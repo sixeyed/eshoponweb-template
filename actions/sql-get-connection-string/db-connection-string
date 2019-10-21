@@ -1,0 +1,6 @@
+{
+    "ConnectionStrings": {
+        "CatalogConnection": "Server={SQL_SERVER}.database.windows.net;Database=Microsoft.eShopOnWeb.CatalogDb;User Id=ServerAdmin;Password={SQL_PASSWORD};Encrypt=true;Connection Timeout=30;",
+        "IdentityConnection": "Server={SQL_SERVER}.database.windows.net;Database=Microsoft.eShopOnWeb.Identity;User Id=ServerAdmin;Password={SQL_PASSWORD};Encrypt=true;Connection Timeout=30;"
+    }
+}

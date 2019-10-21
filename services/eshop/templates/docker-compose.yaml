@@ -1,0 +1,17 @@
+version: "3.6"
+
+services:
+  eshopwebmvc:
+    build: 
+      context: {{.Name}}
+      dockerfile: src/Web/Dockerfile
+    environment:
+      - ConfigController__Enabled=true
+      - Database__Provider=SqlServer
+    ports:
+      - "{{.Parameters.externalPort}}:80"
+    depends_on:
+      - {{range .Services}}{{if eq "sql-server" .ID}}{{.Name}}{{end}}{{end}}
+    secrets:
+      - source: db-connection-string
+        target: /app/config/db-connection-string

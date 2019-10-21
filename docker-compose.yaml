@@ -1,0 +1,47 @@
+version: "3.6"
+
+services:
+  actions-aks-create-cluster:
+    image: sixeyed/actions-aks-create-cluster:1910
+    build:
+      context: ./actions/aks-create-cluster
+
+  actions-aks-create-secret:
+    image: sixeyed/actions-aks-create-secret:1910
+    build:
+      context: ./actions/aks-create-secret
+
+  actions-aks-stack-deploy:
+    image: sixeyed/actions-aks-stack-deploy:1910
+    build:
+      context: ./actions/aks-stack-deploy
+
+  actions-sql-create-database:
+    image: sixeyed/actions-sql-create-database:1910
+    build:
+      context: ./actions/sql-create-database
+
+  actions-sql-get-connection-string:
+    image: sixeyed/actions-sql-get-connection-string:1910
+    build:
+      context: ./actions/sql-get-connection-string
+
+  eshop-scaffold:
+    image: sixeyed/eshoponweb-eshop-web-svc:1910
+    build:
+      context: ./services/eshop
+
+  eshop-github-scaffold:
+    image: sixeyed/eshoponweb-github-svc:1910
+    build:
+      context: ./services/github
+
+  sql-server-scaffold:
+    image: sixeyed/eshoponweb-sql-server-svc:1910
+    build:
+      context: ./services/sql-server
+
+  no-op-scaffold:
+    image: sixeyed/eshoponweb-no-op-svc:1910
+    build:
+      context: ./services/no-op

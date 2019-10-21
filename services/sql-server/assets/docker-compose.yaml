@@ -1,0 +1,14 @@
+version: "3.6"
+
+services:
+  {{.Name}}:
+    image: mcr.microsoft.com/mssql/server:2017-CU14-ubuntu
+    environment:
+      - SA_PASSWORD={{.Parameters.saPassword}}
+      - ACCEPT_EULA=Y
+    ports:
+      - {{.Parameters.externalPort}}:1433
+
+secrets:
+  db-connection-string:
+    file: {{.Name}}/secrets/db-connection-string

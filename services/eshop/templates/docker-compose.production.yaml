@@ -1,0 +1,12 @@
+version: "3.6"
+
+services:
+  eshopwebmvc:
+    environment:
+      - ConfigController__Enabled=false
+      - Database__Provider=SqlServer
+    ports:
+      - "80:80"
+    secrets:
+      - source: db-connection-string
+        target: /app/config/db-connection-string

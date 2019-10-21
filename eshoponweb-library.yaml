@@ -1,0 +1,136 @@
+apiVersion: v1alpha1
+generated: "2018-06-13T09:24:07.392654524Z"
+kind: RepositoryContent
+services:
+  - apiVersion: v1alpha1
+    kind: ServiceTemplate
+    metadata:
+      name: azure
+      platforms:
+        - linux
+    spec:
+      description: Azure configuration
+      icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/azure.png
+      source:
+        image: sixeyed/eshoponweb-no-op-svc:1910
+      title: Azure
+      parameters:
+        - name: region
+          defaultValue: eastus
+          description: Azure region
+          type: string
+        - name: resourceGroup
+          description: Azure resource group name
+          type: string
+
+  - apiVersion: v1alpha1
+    kind: ServiceTemplate
+    metadata:
+      name: aks
+      platforms:
+        - linux
+    spec:
+      description: AKS configuration
+      icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/aks.png
+      source:
+        image: sixeyed/eshoponweb-no-op-svc:1910
+      title: Azure Kubernetes Service
+      parameters:
+        - name: clusterName
+          description: Cluster name
+          type: string
+        - name: nodeCount
+          type: enum
+          values:
+            - value: "2"
+              description: "2"
+            - value: "3"
+              description: "3"
+            - value: "5"
+              description: "5"
+
+  - apiVersion: v1alpha1
+    kind: ServiceTemplate
+    metadata:
+      name: github
+      platforms:
+        - linux
+    spec:
+      description: GitHub Actions to create and deploy to AKS
+      icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/github.png
+      source:
+        image: sixeyed/eshoponweb-github-svc:1910
+      title: GitHub Actions
+      parameters:
+        - name: username
+          description: Username
+          type: string
+        - name: repoName
+          description: Repository name
+          type: string
+
+  - apiVersion: v1alpha1
+    kind: ServiceTemplate
+    metadata:
+      name: eshop-web
+      platforms:
+        - linux
+    spec:
+      description: eShop on Web
+      icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/dotnet.png
+      source:
+        image: sixeyed/eshoponweb-eshop-web-svc:1910
+      title: eShop on Web
+      parameters:
+        - name: externalPort
+          defaultValue: "5100"
+          description: External port
+          type: hostPort
+
+  - apiVersion: v1alpha1
+    kind: ServiceTemplate
+    metadata:
+      name: sql-server
+      platforms:
+        - linux
+    spec:
+      description: SQL Server
+      icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/sql-server.jpg
+      source:
+        image: sixeyed/eshoponweb-sql-server-svc:1910
+      title: SQL Server
+      parameters:
+        - name: saPassword
+          defaultValue: "Pass@word"
+          description: SA password
+          type: string
+        - name: externalPort
+          defaultValue: "5433"
+          description: External port
+          type: hostPort
+
+templates:
+  - apiVersion: v1alpha1
+    kind: ApplicationTemplate
+    metadata:
+      name: eshoponweb
+      platforms:
+        - linux
+    spec:
+      title: eShop on Web
+      description: eShop on Web with deployment to Azure
+      services:
+        - name: .github
+          serviceId: github
+        - name: azure
+          serviceId: azure
+          parameters:
+            region: eastus
+        - name: aks
+          serviceId: aks
+          parameters:
+            nodeCount: 2
+        - name: eshop-web
+          serviceId: eshop-web
+        - name: sql-server
+          serviceId: sql-server
