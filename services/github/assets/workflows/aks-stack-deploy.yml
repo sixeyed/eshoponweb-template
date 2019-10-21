@@ -7,7 +7,9 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
+
+    # issue with 18.04 https://github.com/dotnet/core/issues/3312
 
     steps:
     - uses: actions/checkout@master
