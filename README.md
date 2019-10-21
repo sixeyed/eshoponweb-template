@@ -28,3 +28,20 @@ az ad sp create-for-rbac --name http://app-template
 - `AZURE_SQL_PASSWORD` - Password for SQL Server
 - `DOCKER_HUB_USERNAME` - Docker Hub username
 - `DOCKER_HUB_PASSWORD` - Docker Hub password (or use a [Personal Access Token](https://www.docker.com/blog/docker-hub-new-personal-access-tokens/))
+
+## Setup
+
+Update your App Template config in `~/.docker/application-template/preferences.yaml` to include the template library at `https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/eshoponweb-library.yaml`.
+
+This example includes the local demo libraries and the main Docker library:
+
+```
+apiVersion: v1alpha1
+disableFeedback: false
+kind: Preferences
+repositories:
+- name: eshoponweb-library
+  url: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/eshoponweb-library.yaml
+- name: library
+  url: https://docker-application-template.s3.amazonaws.com/production/v0.1.5/library.yaml
+```

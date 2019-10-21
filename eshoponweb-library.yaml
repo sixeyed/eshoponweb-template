@@ -56,7 +56,7 @@ services:
       platforms:
         - linux
     spec:
-      description: GitHub Actions to create and deploy to AKS
+      description: GitHub Actions to deploy to AKS
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/github.png
       source:
         image: sixeyed/eshoponweb-github-svc:1910
@@ -76,7 +76,7 @@ services:
       platforms:
         - linux
     spec:
-      description: eShop on Web
+      description: Sample .NET Core web app
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/dotnet.png
       source:
         image: sixeyed/eshoponweb-eshop-web-svc:1910
@@ -94,7 +94,7 @@ services:
       platforms:
         - linux
     spec:
-      description: SQL Server
+      description: SQL Server container
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/sql-server.jpg
       source:
         image: sixeyed/eshoponweb-sql-server-svc:1910
