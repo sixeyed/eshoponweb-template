@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
-    - uses: 'docker://sixeyed/actions-sql-create-database:1910'
+    - name: Create Catalog DB
+      uses: 'docker://sixeyed/actions-sql-create-database:1910'
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}
@@ -23,7 +24,8 @@ jobs:
         SQL_PASSWORD: {{`${{ secrets.AZURE_SQL_PASSWORD }}`}}
         SQL_DATABASE: Microsoft.eShopOnWeb.CatalogDb
     
-    - uses: 'docker://sixeyed/actions-sql-create-database:1910'
+    - name: Create Identity DB
+      uses: 'docker://sixeyed/actions-sql-create-database:1910'
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}

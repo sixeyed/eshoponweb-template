@@ -58,7 +58,7 @@ The app is an ASP .NET Core MVC web app, with some core best practices for runni
 - [configuration files](./src/Web/Program.cs) are loaded from multiple locations, so they can be provided by the platform
 - there are [healthchecks](./src/Web/HealthChecks/ApiHealthCheck.cs) in the code which tell the container platform if the app is healthy
 
-You can edit the source code and click _Restart_ from Docker Application Designer to see your changes - try a simple UI change in [\_Layout.cshtml](eshop-web\src\Web\Views\Shared_Layout.cshtml).
+You can edit the source code and click _Restart_ from Docker Application Designer to see your changes - try a simple UI change in [_Layout.cshtml](./src/Web/Views/Shared/_Layout.cshtml).
 
 ## Deploy to Kubernetes
 

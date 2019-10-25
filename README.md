@@ -27,7 +27,7 @@ az ad sp create-for-rbac --name http://app-template
 - `AZURE_SQL_SERVER` - Name of the SQL Server instance
 - `AZURE_SQL_PASSWORD` - Password for SQL Server
 - `DOCKER_HUB_USERNAME` - Docker Hub username
-- `DOCKER_HUB_PASSWORD` - Docker Hub password (or use a [Personal Access Token](https://www.docker.com/blog/docker-hub-new-personal-access-tokens/))
+- `DOCKER_HUB_ACCESS_TOKEN` - Docker Hub [Personal Access Token](https://www.docker.com/blog/docker-hub-new-personal-access-tokens/)
 
 ## Setup
 
