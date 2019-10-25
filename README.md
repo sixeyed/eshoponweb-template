@@ -24,7 +24,7 @@ az ad sp create-for-rbac --name http://app-template
 - `AZURE_SP_NAME` - Service Principal name
 - `AZURE_SP_PASSWORD` - Service Principal password
 - `AZURE_SP_TENANT` - Service Principal tenant
-- `AZURE_SQL_SERVER` - Name of the SQL Server instance
+- `AZURE_SQL_SERVER_NAME` - Name of the SQL Server instance
 - `AZURE_SQL_PASSWORD` - Password for SQL Server
 - `DOCKER_HUB_USERNAME` - Docker Hub username
 - `DOCKER_HUB_ACCESS_TOKEN` - Docker Hub [Personal Access Token](https://www.docker.com/blog/docker-hub-new-personal-access-tokens/)
