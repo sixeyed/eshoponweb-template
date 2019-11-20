@@ -28,13 +28,13 @@ jobs:
 
     - name: Get SQL Server connection string
       id: get-connection-string
-      uses: 'docker://sixeyed/actions-sql-get-connection-string:1910'
+      uses: 'docker://sixeyed/actions-sql-get-connection-string:1911'
       env:
-        SQL_SERVER: {{`${{ secrets.AZURE_SQL_SERVER }}`}}        
+        SQL_SERVER: {{`${{ secrets.AZURE_SQL_SERVER_NAME }}`}}        
         SQL_PASSWORD: {{`${{ secrets.AZURE_SQL_PASSWORD }}`}}
 
     - name: Write Kubernetes secret 
-      uses: 'docker://sixeyed/actions-aks-create-secret:1910'
+      uses: 'docker://sixeyed/actions-aks-create-secret:1911'
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}
@@ -46,7 +46,7 @@ jobs:
         AKS_SECRET_FILE_VALUE: {{`${{ steps.get-connection-string.outputs.connectionString }}`}}
         
     - name: Deploy from Compose to Kubernetes
-      uses: 'docker://sixeyed/actions-aks-stack-deploy:1910'          
+      uses: 'docker://sixeyed/actions-aks-stack-deploy:1911'          
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}

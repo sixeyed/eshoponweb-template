@@ -22,31 +22,36 @@ else
 	echo "Using existing resource group: $AZURE_RESOURCE_GROUP"
 fi
 
-echo "Creating AKS cluster: $AKS_CLUSTER_NAME"
-az aks create \
-    --resource-group $AZURE_RESOURCE_GROUP \
-    --name $AKS_CLUSTER_NAME \
-    --node-count $AKS_NODE_COUNT \
-    --enable-addons monitoring \
-    --generate-ssh-keys \
-    --service-principal $AZURE_SP_APP_ID \
-    --client-secret $AZURE_SP_PASSWORD
+az aks show --name $AKS_CLUSTER_NAME --resource-group $AZURE_RESOURCE_GROUP > /dev/null
+if [ $? != 0 ]; then
+    echo "Creating AKS cluster: $AKS_CLUSTER_NAME"
+    az aks create \
+        --resource-group $AZURE_RESOURCE_GROUP \
+        --name $AKS_CLUSTER_NAME \
+        --node-count $AKS_NODE_COUNT \
+        --enable-addons monitoring \
+        --generate-ssh-keys \
+        --service-principal $AZURE_SP_APP_ID \
+        --client-secret $AZURE_SP_PASSWORD
 
-# get creds for Kubectl
-az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AKS_CLUSTER_NAME
-    
-echo 'Initializing Helm'
-kubectl -n kube-system create serviceaccount tiller
-kubectl -n kube-system create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount kube-system:tiller
-helm init --service-account tiller --wait
+    # get creds for Kubectl
+    az aks get-credentials --resource-group $AZURE_RESOURCE_GROUP --name $AKS_CLUSTER_NAME
+        
+    echo 'Initializing Helm'
+    kubectl -n kube-system create serviceaccount tiller
+    kubectl -n kube-system create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount kube-system:tiller
+    helm init --service-account tiller --wait
 
-echo 'Deploying etcd for Compose on Kubernetes'
-kubectl create namespace compose
-helm install --name etcd-operator stable/etcd-operator --namespace compose --wait
-kubectl apply -f /compose-etcd.yaml
+    echo 'Deploying etcd for Compose on Kubernetes'
+    kubectl create namespace compose
+    helm install --name etcd-operator stable/etcd-operator --namespace compose --wait
+    kubectl apply -f /compose-etcd.yaml
 
-echo 'Installing Compose on Kubernetes'
-installer-linux -namespace=compose -etcd-servers=http://compose-etcd-client:2379 -tag="v0.4.23"
+    echo 'Installing Compose on Kubernetes'
+    installer-linux -namespace=compose -etcd-servers=http://compose-etcd-client:2379 -tag="v0.4.23"
 
-echo 'Configuring RBAC for Kubernetes dashboard'
-kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+    echo 'Configuring RBAC for Kubernetes dashboard'
+    kubectl create clusterrolebinding kubernetes-dashboard --clusterrole=cluster-admin --serviceaccount=kube-system:kubernetes-dashboard
+else
+	echo "AKS cluster exists - exiting"
+fi

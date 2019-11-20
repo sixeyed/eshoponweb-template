@@ -1,9 +1,6 @@
 name: Create SQL Server databases
 
-on:
-  push:
-    paths:
-      - "**/az-*.yml"
+on: push
 
 jobs:
 
@@ -13,7 +10,7 @@ jobs:
  
     steps:
     - name: Create Catalog DB
-      uses: 'docker://sixeyed/actions-sql-create-database:1910'
+      uses: 'docker://sixeyed/actions-sql-create-database:1911'
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}
@@ -25,7 +22,7 @@ jobs:
         SQL_DATABASE: Microsoft.eShopOnWeb.CatalogDb
     
     - name: Create Identity DB
-      uses: 'docker://sixeyed/actions-sql-create-database:1910'
+      uses: 'docker://sixeyed/actions-sql-create-database:1911'
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}

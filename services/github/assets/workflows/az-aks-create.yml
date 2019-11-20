@@ -1,9 +1,6 @@
 name: Create AKS cluster
 
-on:
-  push:
-    paths:
-      - "**/az-*.yml"
+on: push
 
 jobs:
 
@@ -13,7 +10,7 @@ jobs:
  
     steps:
     - name: Create AKS cluster 
-      uses: 'docker://sixeyed/actions-aks-create-cluster:1910'
+      uses: 'docker://sixeyed/actions-aks-create-cluster:1911'
       env:
         AZURE_SP_NAME: {{`${{ secrets.AZURE_SP_NAME }}`}}
         AZURE_SP_TENANT: {{`${{ secrets.AZURE_SP_TENANT }}`}}

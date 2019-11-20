@@ -12,7 +12,7 @@ services:
       description: Azure configuration
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/azure.png
       source:
-        image: sixeyed/eshoponweb-no-op-svc:1910
+        image: sixeyed/eshoponweb-no-op-svc:1911
       title: Azure
       parameters:
         - name: region
@@ -33,7 +33,7 @@ services:
       description: AKS configuration
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/aks.png
       source:
-        image: sixeyed/eshoponweb-no-op-svc:1910
+        image: sixeyed/eshoponweb-no-op-svc:1911
       title: Azure Kubernetes Service
       parameters:
         - name: clusterName
@@ -59,7 +59,7 @@ services:
       description: GitHub Actions to deploy to AKS
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/github.png
       source:
-        image: sixeyed/eshoponweb-github-svc:1910
+        image: sixeyed/eshoponweb-github-svc:1911
       title: GitHub Actions
       parameters:
         - name: username
@@ -79,7 +79,7 @@ services:
       description: Sample .NET Core web app
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/dotnet.png
       source:
-        image: sixeyed/eshoponweb-eshop-web-svc:1910
+        image: sixeyed/eshoponweb-eshop-web-svc:1911
       title: eShop on Web
       parameters:
         - name: externalPort
@@ -97,7 +97,7 @@ services:
       description: SQL Server container
       icon: https://raw.githubusercontent.com/sixeyed/eshoponweb-template/master/img/sql-server.jpg
       source:
-        image: sixeyed/eshoponweb-sql-server-svc:1910
+        image: sixeyed/eshoponweb-sql-server-svc:1911
       title: SQL Server
       parameters:
         - name: saPassword
